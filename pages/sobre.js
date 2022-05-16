@@ -1,9 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
-export default function Home({list}) {
+export default function Sobre({student}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -14,36 +13,23 @@ export default function Home({list}) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-        Filmes em Destaques
+        Sobre o sistema
         </h1>
 
-<Link href="/busca">ir para busca</Link>
-
-<ul>
-
-{list.map(item=>(
-
-<li>
-  <a href={`/movie/${item.id}`} >
-<img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} width="150" /><br/>
 
 
-
-</a>
-
-</li>
-
-
-))}
-
-</ul>
+<p>Estudo sobre uso dos recursos do next e uso de api. Foi usado a api do site TMDB</p>
 
 
 <hr/>
-<br/>
+
+Student: {student} <br/>
+
+<hr/><br/>
+
+<Link href="https://www.themoviedb.org/">Site TMDB</Link>
 
 
-<Link href="/sobre">Sobre mim</Link>
 
       </main>
 
@@ -54,16 +40,24 @@ export default function Home({list}) {
 }
 
 
-export async function getServerSideProps(){
+export async function getStaticProps(){
 
-  const res = await fetch('http://localhost:3000/api/trending')
 
-  const json = await res.json();
 
-  return{
-
+ // const res = await fetch('http://localhost:3000/api/trending')
+  //const json = await res.json();
+ /* return{
     props:{
       list: json.list
     }
-  }
+ } */
+
+return{
+
+    props:{
+        student: 'Jailson'
+    }
+}
+
+
 }
